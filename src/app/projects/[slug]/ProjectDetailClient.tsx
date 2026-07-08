@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { resumeData } from "@/data/resume";
 import Footer from "@/components/Footer";
+import AssetImg from "@/components/AssetImg";
+import { assetPath } from "@/lib/assetPath";
 import { GithubIcon, ExternalLinkIcon } from "@/components/Icons";
 
 interface Props {
@@ -50,7 +52,7 @@ export default function ProjectDetailClient({ slug }: Props) {
         {/* 单图 */}
         {!hasGallery && !hasVideo && project.image && (
           <MediaBox>
-            <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+            <AssetImg src={project.image!} alt={project.name} className="w-full h-full object-cover" />
           </MediaBox>
         )}
 
@@ -59,10 +61,10 @@ export default function ProjectDetailClient({ slug }: Props) {
           <div className="relative mb-6">
             <MediaBox>
               <video
-                src={project.video}
+                src={assetPath(project.video!)}
                 controls
                 className="w-full h-full object-cover"
-                poster={project.image}
+                poster={project.image ? assetPath(project.image) : undefined}
                 preload="metadata"
               />
             </MediaBox>
@@ -163,7 +165,7 @@ function ImageGallery({ images, name }: { images: string[]; name: string }) {
   return (
     <div className="relative mb-6">
       <MediaBox>
-        <img
+        <AssetImg
           src={images[idx]}
           alt={`${name} ${idx + 1}`}
           className="w-full h-full object-cover transition-opacity duration-300"
