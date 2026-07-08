@@ -5,6 +5,7 @@ import Section from "./Section";
 import SectionTitle from "./SectionTitle";
 import FadeInSection from "./FadeInSection";
 import TiltCard from "./TiltCard";
+import AssetImg from "./AssetImg";
 import { GithubIcon, ExternalLinkIcon } from "./Icons";
 import { resumeData } from "@/data/resume";
 
@@ -39,7 +40,7 @@ export default function Projects() {
                     style={{ background: "linear-gradient(150deg, #E0D9D2, #EBE5DF)" }}
                   >
                     {featured.image ? (
-                      <img src={featured.image} alt={featured.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600" />
+                      <AssetImg src={featured.image!} alt={featured.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600" />
                     ) : (
                       <div className="w-full h-full min-h-[200px] flex items-center justify-center">
                         <span className="font-mono text-xs text-accent/12 tracking-[0.5em] uppercase">Featured</span>
@@ -88,7 +89,7 @@ export default function Projects() {
                     style={{ background: "linear-gradient(150deg, #EBE5DF, #E0D9D2)" }}
                   >
                     {project.image ? (
-                      <img src={project.image} alt={project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <AssetImg src={project.image!} alt={project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <span className="font-mono text-xs text-accent/10 tracking-widest">{project.name}</span>

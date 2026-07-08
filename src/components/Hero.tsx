@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { resumeData } from "@/data/resume";
 import { GithubIcon, LinkedinIcon, MailIcon } from "./Icons";
+import AssetImg from "./AssetImg";
 
 const iconMap: Record<string, React.ReactNode> = {
   github: <GithubIcon size={18} />,
