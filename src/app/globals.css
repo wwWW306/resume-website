@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #C0BAB3;
+  --color-bg-alt: #B8B2AB;
+  --color-surface: #F5F3F1;
+  --color-surface-hover: #EDEAE7;
+  --color-accent: #391214;
+  --color-accent-hover: #4E1B1F;
+  --color-accent-dark: #2D0D10;
+  --color-accent-soft: rgba(57, 18, 20, 0.06);
+  --color-accent-muted: rgba(57, 18, 20, 0.12);
+  --color-edge: #160F0C;
+  --color-shadow-sm: rgba(22, 15, 12, 0.04);
+  --color-shadow: rgba(22, 15, 12, 0.06);
+  --color-shadow-md: rgba(22, 15, 12, 0.10);
+  --color-border: rgba(22, 15, 12, 0.08);
+  --color-border-strong: rgba(22, 15, 12, 0.14);
+  --color-border-accent: rgba(57, 18, 20, 0.15);
+  --color-text-p1: #391214;
+  --color-text-p2: #52423D;
+  --color-text-p3: #887D77;
+  --color-text-p4: #A09994;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --animate-fade-up: fadeUp 0.7s ease-out;
+  --animate-float: float 8s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-p2);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === 噪点 === */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 45% 20% at 50% -5%, rgba(57,18,20,0.03) 0%, transparent 55%),
+    radial-gradient(ellipse 25% 20% at 85% 75%, rgba(82,66,61,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-text-p4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+::selection { background: rgba(57, 18, 20, 0.10); color: var(--color-text-p1); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* === 编辑排版工具类 === */
+
+/* Drop Cap */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 0.8;
+  margin-right: 12px;
+  margin-top: 4px;
+  color: var(--color-accent);
+}
+
+/* Pull Quote — 侧边引文 */
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--color-accent);
+  padding-left: 20px;
+  border-left: 3px solid var(--color-accent);
+  margin: 2rem 0;
+}
+
+/* 装饰性大数字 — 背景 watermark */
+.section-number {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 12vw, 10rem);
+  font-weight: 800;
+  line-height: 0.8;
+  color: rgba(57, 18, 20, 0.04);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 装饰性竖排文字 */
+.vertical-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  color: var(--color-accent);
+  opacity: 0.45;
+}
+
+/* 装饰性括号 */
+.decorative-bracket {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  opacity: 0.25;
+  line-height: 1;
+  user-select: none;
+}
+
+/* 装饰性几何菱形 */
+.decorative-diamond {
+  width: 8px; height: 8px;
+  background: var(--color-accent);
+  opacity: 0.3;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+/* 装饰性圆圈 */
+.decorative-ring {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(57,18,20,0.12);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* 装饰性角标 */
+.corner-accent {
+  position: relative;
+}
+.corner-accent::before,
+.corner-accent::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: rgba(57,18,20,0.15);
+  border-style: solid;
+  pointer-events: none;
+}
+.corner-accent::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.corner-accent::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+/* 纸张阴影 */
+.shadow-paper {
+  box-shadow: 0 1px 3px rgba(22,15,12,0.04), 0 4px 12px rgba(22,15,12,0.05);
+}
+.shadow-paper-lg {
+  box-shadow: 0 2px 6px rgba(22,15,12,0.05), 0 10px 30px rgba(22,15,12,0.08);
+}
