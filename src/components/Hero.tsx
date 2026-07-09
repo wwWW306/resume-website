@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resumeData } from "@/data/resume";
-import { GithubIcon, LinkedinIcon, MailIcon } from "./Icons";
+import { GithubIcon, LinkedinIcon, MailIcon, GlobeIcon } from "./Icons";
 import AssetImg from "./AssetImg";
 
 const iconMap: Record<string, React.ReactNode> = {
   github: <GithubIcon size={18} />,
   linkedin: <LinkedinIcon size={18} />,
   mail: <MailIcon size={18} />,
+  link: <GlobeIcon size={18} />,
 };
 
 export default function Hero() {
